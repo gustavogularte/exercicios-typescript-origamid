@@ -53,3 +53,12 @@ if (input) {
 // 3 - Se a função receber um número, retorne um número
 // 4 - Se a função receber uma string, retorne um número
 // 5 - Se ela receber algo diferente, retorne um erro. (throw "value deve ser um número ou uma string")
+function toNumber(item: number | string) {
+  if (typeof item === 'number') {
+    return item;
+  } else if (typeof item === 'string') {
+    return +item;
+  } else {
+    throw 'Value dvee ser um número ou uma string';
+  }
+}
