@@ -48,6 +48,7 @@ if (input) {
   input.addEventListener('keyup', totalMudou);
 }
 
+//Exercício 3
 // 1 - Crie uma função chamada toNumber
 // 2 - A função pode receber number | string
 // 3 - Se a função receber um número, retorne um número
@@ -62,3 +63,121 @@ function toNumber(item: number | string) {
     throw 'Value dvee ser um número ou uma string';
   }
 }
+
+//Exercício 4
+// async function fetchProduct() {
+//   const response = await fetch('https://api.origamid.dev/json/notebook.json');
+//   const data = await response.json();
+//   showProduct(data);
+// }
+
+// fetchProduct();
+
+// function showProduct(data) {
+//   document.body.innerHTML = `
+//     <div>
+//       <h2>${data.name}</h2>
+//     </div>
+//   `;
+// }
+interface Empresa {
+  nome: string;
+  fundacao: number;
+  pais: string;
+}
+
+interface Product {
+  nome: string;
+  preco: number;
+  descricao: string;
+  garantia: string;
+  seguroAcidentes: boolean;
+  empresaFabricante: Empresa;
+  empresaMontadora: Empresa;
+}
+
+async function fetchProduct() {
+  const response = await fetch('https://api.origamid.dev/json/notebook.json');
+  const data = await response.json();
+  showProduct(data);
+}
+
+fetchProduct();
+
+function showProduct(data: Product) {
+  document.body.innerHTML += `
+    <div>
+      <h2>${data.nome}</h2>
+      <p>R$ ${data.preco}</p>
+      <div>
+        <h3>Fabricante: ${data.empresaFabricante.nome}</h3>
+      </div>
+      <div>
+        <h3>Montadora: ${data.empresaMontadora.nome}</h3>
+      </div>
+    </div>
+  `;
+}
+
+//Exercício 5
+// Existem apenas dois níveis de cursos, Iniciante (iniciante) e Avançado (avancado). Se for para iniciante pinte o título de azul, para avançado pinte de vermelho.
+// async function fetchCursos() {
+//   const response = await fetch('https://api.origamid.dev/json/cursos.json');
+//   const data = await response.json();
+//   mostrarCursos(data);
+// }
+
+// fetchCursos();
+
+// function mostrarCursos(cursos) {}
+async function fetchCursos() {
+  const response = await fetch('https://api.origamid.dev/json/cursos.json');
+  const data = await response.json();
+  mostrarCursos(data);
+}
+fetchCursos();
+
+interface Curso {
+  aulas: number;
+  gratuito: boolean;
+  horas: number;
+  idAulas: number[];
+  nivel: 'iniciante' | 'avancado';
+  nome: string;
+  tags: string[];
+}
+function mostrarCursos(cursos: Curso[]) {
+  cursos.map(
+    (curso) =>
+      (document.body.innerHTML += `
+    <div> 
+      <h1 style='color: ${curso.nivel === 'iniciante' ? 'blue' : 'red'}'>${
+        curso.nome
+      }</h1>
+      <p>Aulas: ${curso.aulas}</p>
+      <p>${curso.gratuito ? 'gratuito' : 'pago'}</p>
+      <p>${curso.horas} horas</p>
+      <p>Aulas: ${curso.idAulas}</p>
+      <p>nivel: ${curso.nivel}</p>
+      <p>Tags: ${curso.tags}</p>
+    </div
+  `)
+  );
+}
+
+//Exercício 6
+// Selecione o link utilizando o método getElementById.
+//  Substitua o href do link (HTMLAnchorElement) de http:// para https://.
+const link = document.getElementById('origamid');
+if (link instanceof HTMLAnchorElement) {
+  link.href = link.href.replace('http://', 'https://');
+}
+
+//Exercício 7
+// Selecione os elementos com a classe link.
+// Crie uma função que deve ser executada para cada elemento.
+// Modificar através da função o estilo da color e border.
+const links = document.querySelectorAll('.link');
+links.forEach(link => {
+  
+})
