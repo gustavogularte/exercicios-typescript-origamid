@@ -178,6 +178,12 @@ if (link instanceof HTMLAnchorElement) {
 // Crie uma função que deve ser executada para cada elemento.
 // Modificar através da função o estilo da color e border.
 const links = document.querySelectorAll('.link');
-links.forEach(link => {
-  
-})
+function styles(item: HTMLElement) {
+  item.style.color = 'red';
+  item.style.border = '2px solid blue';
+}
+links.forEach((link) => {
+  if (link instanceof HTMLElement) {
+    styles(link);
+  }
+});

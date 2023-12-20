@@ -115,3 +115,17 @@ const link = document.getElementById('origamid');
 if (link instanceof HTMLAnchorElement) {
     link.href = link.href.replace('http://', 'https://');
 }
+//Exercício 7
+// Selecione os elementos com a classe link.
+// Crie uma função que deve ser executada para cada elemento.
+// Modificar através da função o estilo da color e border.
+const links = document.querySelectorAll('.link');
+function styles(item) {
+    item.style.color = 'red';
+    item.style.border = '2px solid blue';
+}
+links.forEach((link) => {
+    if (link instanceof HTMLElement) {
+        styles(link);
+    }
+});
