@@ -63,23 +63,23 @@ function toNumber(item) {
 async function fetchProduct() {
     const response = await fetch('https://api.origamid.dev/json/notebook.json');
     const data = await response.json();
-    showProduct(data);
+    //showProduct(data);
 }
 fetchProduct();
-function showProduct(data) {
-    document.body.innerHTML += `
-    <div>
-      <h2>${data.nome}</h2>
-      <p>R$ ${data.preco}</p>
-      <div>
-        <h3>Fabricante: ${data.empresaFabricante.nome}</h3>
-      </div>
-      <div>
-        <h3>Montadora: ${data.empresaMontadora.nome}</h3>
-      </div>
-    </div>
-  `;
-}
+// function showProduct(data: Product) {
+//   document.body.innerHTML += `
+//     <div>
+//       <h2>${data.nome}</h2>
+//       <p>R$ ${data.preco}</p>
+//       <div>
+//         <h3>Fabricante: ${data.empresaFabricante.nome}</h3>
+//       </div>
+//       <div>
+//         <h3>Montadora: ${data.empresaMontadora.nome}</h3>
+//       </div>
+//     </div>
+//   `;
+// }
 //Exercício 5
 // Existem apenas dois níveis de cursos, Iniciante (iniciante) e Avançado (avancado). Se for para iniciante pinte o título de azul, para avançado pinte de vermelho.
 // async function fetchCursos() {
@@ -96,17 +96,22 @@ async function fetchCursos() {
 }
 fetchCursos();
 function mostrarCursos(cursos) {
-    cursos.map((curso) => (document.body.innerHTML += `
-    <div> 
-      <h1 style='color: ${curso.nivel === 'iniciante' ? 'blue' : 'red'}'>${curso.nome}</h1>
-      <p>Aulas: ${curso.aulas}</p>
-      <p>${curso.gratuito ? 'gratuito' : 'pago'}</p>
-      <p>${curso.horas} horas</p>
-      <p>Aulas: ${curso.idAulas}</p>
-      <p>nivel: ${curso.nivel}</p>
-      <p>Tags: ${curso.tags}</p>
-    </div
-  `));
+    // cursos.map(
+    //   (curso) =>
+    //     (document.body.innerHTML += `
+    //   <div>
+    //     <h1 style='color: ${curso.nivel === 'iniciante' ? 'blue' : 'red'}'>${
+    //       curso.nome
+    //     }</h1>
+    //     <p>Aulas: ${curso.aulas}</p>
+    //     <p>${curso.gratuito ? 'gratuito' : 'pago'}</p>
+    //     <p>${curso.horas} horas</p>
+    //     <p>Aulas: ${curso.idAulas}</p>
+    //     <p>nivel: ${curso.nivel}</p>
+    //     <p>Tags: ${curso.tags}</p>
+    //   </div
+    // `)
+    // );
 }
 //Exercício 6
 // Selecione o link utilizando o método getElementById.
@@ -129,3 +134,24 @@ links.forEach((link) => {
         styles(link);
     }
 });
+//Exercício 8
+// Utilizando a estrutura HTML/CSS abaixo, crie o script que irá fazer o botão mobile funcionar (ativar/desativar a navegação).
+const btn = document.getElementById('btn-mobile');
+function ativarMenu(event) {
+    const btn = event.currentTarget;
+    const nav = document.querySelector('#nav');
+    if (btn instanceof HTMLButtonElement && nav) {
+        const active = nav.classList.contains('active');
+        if (active) {
+            nav.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'Abrir Menu');
+        }
+        else {
+            nav.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.setAttribute('aria-label', 'Fechar Menu');
+        }
+    }
+}
+btn?.addEventListener('pointerdown', ativarMenu);
