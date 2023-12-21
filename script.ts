@@ -196,13 +196,13 @@ function ativarMenu(event: PointerEvent) {
   const btn = event.currentTarget;
   const nav = document.querySelector('#nav');
   if (btn instanceof HTMLButtonElement && nav) {
-    const active = nav.classList.contains('active')
+    const active = nav.classList.contains('active');
     if (active) {
-      nav.classList.remove('active')
+      nav.classList.remove('active');
       btn.setAttribute('aria-expanded', 'false');
       btn.setAttribute('aria-label', 'Abrir Menu');
     } else {
-      nav.classList.add('active')
+      nav.classList.add('active');
       btn.setAttribute('aria-expanded', 'true');
       btn.setAttribute('aria-label', 'Fechar Menu');
     }
@@ -210,3 +210,17 @@ function ativarMenu(event: PointerEvent) {
 }
 
 btn?.addEventListener('pointerdown', ativarMenu);
+
+//Exercício 9
+// Crie uma função que arredonda um valor passado para cima.
+// A função pode receber string ou number.
+// A função deve retornar o mesmo tipo que ela receber.
+function arredondar(valor: string): string;
+function arredondar(valor: number): number;
+function arredondar(valor: string | number): string | number {
+  if (typeof valor === 'number') {
+    return Math.ceil(valor);
+  } else {
+    return Math.ceil(+valor).toString();
+  }
+}

@@ -155,3 +155,11 @@ function ativarMenu(event) {
     }
 }
 btn?.addEventListener('pointerdown', ativarMenu);
+function arredondar(valor) {
+    if (typeof valor === 'number') {
+        return Math.ceil(valor);
+    }
+    else {
+        return Math.ceil(+valor).toString();
+    }
+}
