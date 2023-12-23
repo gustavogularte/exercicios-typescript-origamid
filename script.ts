@@ -214,7 +214,7 @@ btn?.addEventListener('pointerdown', ativarMenu);
 //Exercício 9
 // Crie uma função que arredonda um valor passado para cima.
 // A função pode receber string ou number.
-// A função deve retornar o mesmo tipo que ela receber.
+// A função deve retornar o mesmo tipo que ela receber
 function arredondar(valor: string): string;
 function arredondar(valor: number): number;
 function arredondar(valor: string | number): string | number {
