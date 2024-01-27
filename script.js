@@ -57,3 +57,29 @@ function toNumber(value) {
         throw 'value deve ser um número ou uma string';
     }
 }
+async function fetchProduct() {
+    const response = await fetch('https://api.origamid.dev/json/notebook.json');
+    const data = await response.json();
+    showProduct(data);
+}
+fetchProduct();
+function showProduct(data) {
+    //console.log(data.nome);
+    // console.log(data.preco);
+    // console.log(data.empresaFabricante.pais);
+}
+async function fetchCursos() {
+    const response = await fetch('https://api.origamid.dev/json/cursos.json');
+    const data = await response.json();
+    console.log(data[0]);
+    mostrarCursos(data);
+}
+fetchCursos();
+function mostrarCursos(cursos) {
+    cursos.forEach((curso) => {
+        const color = curso.nivel === 'iniciante' ? 'blue' : 'red';
+        document.body.innerHTML += `
+     <h1 style="color: ${color};">${curso.nome}</h1>
+  `;
+    });
+}
