@@ -93,7 +93,6 @@ function showProduct(data: Produto) {
 async function fetchCursos() {
   const response = await fetch('https://api.origamid.dev/json/cursos.json');
   const data = await response.json();
-  console.log(data[0]);
   mostrarCursos(data);
 }
 fetchCursos();
@@ -115,4 +114,12 @@ function mostrarCursos(cursos: Cursos[]) {
      <h1 style="color: ${color};">${curso.nome}</h1>
   `;
   });
+}
+
+
+//1 - Selecione o link utilizando o método getElementById.
+//2 - Substitua o href do link (HTMLAnchorElement) de http:// para https://.
+const link = document.getElementById('origamid');
+if (link instanceof HTMLAnchorElement) {
+  link.href = link.href.replace('http://', 'https://');
 }
