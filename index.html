@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
+
 <body>
-  <h1>EX 2</h1>
+  <header id="header">
+    <a id="logo" href="">Logo</a>
+    <nav id="nav">
+      <button
+        aria-label="Abrir Menu"
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-controls="menu"
+        id="btn-mobile"
+      >
+        Menu
+        <span id="hamburger"></span>
+      </button>
+      <ul id="menu" role="menu">
+        <li><a href="/">Sobre</a></li>
+        <li><a href="/">Produtos</a></li>
+        <li><a href="/">Portfólio</a></li>
+        <li><a href="/">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
   <input type="text">
   <p></p>
   <a id="origamid" href="http://www.origamid.com">Origamid</a>
+  <p></p>
+  <a class="link" href="/">Home</a>
+  <a class="link" href="/produtos">Produtos</a>
+  <button class="link">Login</button>
   <script src="script.js"></script>
 </body>
+
 </html>

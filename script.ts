@@ -110,12 +110,11 @@ interface Cursos {
 function mostrarCursos(cursos: Cursos[]) {
   cursos.forEach((curso) => {
     const color = curso.nivel === 'iniciante' ? 'blue' : 'red';
-    document.body.innerHTML += `
-     <h1 style="color: ${color};">${curso.nome}</h1>
-  `;
+  //   document.body.innerHTML += `
+  //    <h1 style="color: ${color};">${curso.nome}</h1>
+  // `;
   });
 }
-
 
 //1 - Selecione o link utilizando o método getElementById.
 //2 - Substitua o href do link (HTMLAnchorElement) de http:// para https://.
@@ -123,3 +122,48 @@ const link = document.getElementById('origamid');
 if (link instanceof HTMLAnchorElement) {
   link.href = link.href.replace('http://', 'https://');
 }
+
+// 1 - Selecione os elementos com a classe link.
+// 2 - Crie uma função que deve ser executada para cada elemento.
+// 3 - Modificar através da função o estilo da color e border.
+const links = document.querySelectorAll('.link');
+links.forEach((link) => {
+  if (link instanceof HTMLElement) {
+    mudarLink(link);
+  }
+});
+function mudarLink(element: HTMLElement) {
+  element.style.color = 'red';
+  element.style.border = '2px solid red';
+}
+
+// Estado dos elementos
+
+// menu inativo:
+// class="" em nav
+// aria-expanded="false" em button
+// aria-label="Abrir Menu" em button
+
+// menu ativo:
+// class="active" em nav
+// aria-expanded="true" em button
+// aria-label="Fechar Menu" em button
+const button = document.querySelector('#btn-mobile');
+
+function toggleMenu(e: Event) {
+  const nav = document.querySelector('#nav');
+  const btn = e.currentTarget;
+  if (btn instanceof HTMLButtonElement && nav) {
+    if (nav.classList.contains('active')) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Abrir Menu');
+      nav.classList.remove('active');
+    } else {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Fechar Menu');
+      nav?.classList.add('active');
+    }
+  }
+}
+
+button?.addEventListener('pointerdown', toggleMenu);
