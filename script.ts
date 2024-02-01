@@ -148,9 +148,9 @@ function mudarLink(element: HTMLElement) {
 // class="active" em nav
 // aria-expanded="true" em button
 // aria-label="Fechar Menu" em button
-const button = document.querySelector('#btn-mobile');
+const button = document.getElementById('btn-mobile');
 
-function toggleMenu(e: Event) {
+function toggleMenu(e: PointerEvent) {
   const nav = document.querySelector('#nav');
   const btn = e.currentTarget;
   if (btn instanceof HTMLButtonElement && nav) {
@@ -165,5 +165,18 @@ function toggleMenu(e: Event) {
     }
   }
 }
-
 button?.addEventListener('pointerdown', toggleMenu);
+
+
+// Crie uma função que arredonda um valor passado para cima.
+// A função pode receber string ou number.
+// A função deve retornar o mesmo tipo que ela receber.
+function arredondarCima(valor: number): number;
+function arredondarCima(valor: string): string;
+function arredondarCima(valor: number | string): number | string {
+  if (typeof valor === 'number') {
+    return Math.ceil(valor);
+  } else {
+    return `${Math.ceil(+valor)}`;
+  }
+}

@@ -110,7 +110,7 @@ function mudarLink(element) {
 // class="active" em nav
 // aria-expanded="true" em button
 // aria-label="Fechar Menu" em button
-const button = document.querySelector('#btn-mobile');
+const button = document.getElementById('btn-mobile');
 function toggleMenu(e) {
     const nav = document.querySelector('#nav');
     const btn = e.currentTarget;
@@ -128,3 +128,11 @@ function toggleMenu(e) {
     }
 }
 button?.addEventListener('pointerdown', toggleMenu);
+function arredondarCima(valor) {
+    if (typeof valor === 'number') {
+        return Math.ceil(valor);
+    }
+    else {
+        return `${Math.ceil(+valor)}`;
+    }
+}
