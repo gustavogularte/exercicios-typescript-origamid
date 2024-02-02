@@ -230,28 +230,59 @@ function mostrarCursos2(data: any) {
 // 6 - Crie uma User Type Guard, para verificar se o valor de localStorage é compatível com UserData
 // 7 - Ao refresh da página, preencha os valores de localStorage (caso seja UserData) no formulário e em window.UserData
 interface UserData {
-  nome: string;
-  email: string;
-  cpf: string;
+  nome?: string;
+  email?: string;
+  cpf?: string;
 }
 interface Window {
   UserData: object;
 }
 
-function handleKeyup({ target }: KeyboardEvent){
-  if (target instanceof HTMLInputElement) {
-    window.UserData = {...window.UserData, [target.id]: target.value};
-    if ('nome' in window.UserData) {
-      window.localStorage.setItem('nome', `${window.UserData.nome}`);
-    }
-    if ('email' in window.UserData) {
-      window.localStorage.setItem('email', `${window.UserData.email}`);
-    }
-    if ('cpf' in window.UserData) {
-      window.localStorage.setItem('cpf', `${window.UserData.cpf}`);
-    }
+function validJSON(value: string) {
+  try {
+    JSON.parse(value);
+    return true;
+  } catch {
+    return false;
   }
 }
 
-const form = document.querySelector('#form');
+function isUserData(value: unknown): value is UserData {
+  if (
+    value &&
+    typeof value === 'object' &&
+    ('nome' in value || 'email' in value || 'cpf' in value)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function loadLocalStorage() {
+  let UserDataLocal = window.localStorage.getItem('UserData');
+  if (UserDataLocal && validJSON(UserDataLocal)) {
+    UserDataLocal = JSON.parse(UserDataLocal);
+    if (isUserData(UserDataLocal)) {
+      window.UserData = UserDataLocal;
+      Object.entries(UserDataLocal).forEach(([key, value]) => {
+        const input = document.getElementById(key);
+        if (input instanceof HTMLInputElement) {
+          input.value = value;
+        }
+      });
+    }
+  }
+}
+loadLocalStorage();
+
+function handleKeyup({ target }: KeyboardEvent) {
+  if (target instanceof HTMLInputElement) {
+    window.UserData = { ...window.UserData, [target.id]: target.value };
+    console.log(window.UserData);
+    window.localStorage.setItem('UserData', JSON.stringify(window.UserData));
+  }
+}
+
+const form = document.querySelector<HTMLElement>('#form');
 form?.addEventListener('keyup', handleKeyup);

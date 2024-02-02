@@ -168,18 +168,46 @@ function mostrarCursos2(data) {
         });
     }
 }
+function validJSON(value) {
+    try {
+        JSON.parse(value);
+        return true;
+    }
+    catch {
+        return false;
+    }
+}
+function isUserData(value) {
+    if (value &&
+        typeof value === 'object' &&
+        ('nome' in value || 'email' in value || 'cpf' in value)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function loadLocalStorage() {
+    let UserDataLocal = window.localStorage.getItem('UserData');
+    if (UserDataLocal && validJSON(UserDataLocal)) {
+        UserDataLocal = JSON.parse(UserDataLocal);
+        if (isUserData(UserDataLocal)) {
+            window.UserData = UserDataLocal;
+            Object.entries(UserDataLocal).forEach(([key, value]) => {
+                const input = document.getElementById(key);
+                if (input instanceof HTMLInputElement) {
+                    input.value = value;
+                }
+            });
+        }
+    }
+}
+loadLocalStorage();
 function handleKeyup({ target }) {
     if (target instanceof HTMLInputElement) {
         window.UserData = { ...window.UserData, [target.id]: target.value };
-        if ('nome' in window.UserData) {
-            window.localStorage.setItem('nome', `${window.UserData.nome}`);
-        }
-        if ('email' in window.UserData) {
-            window.localStorage.setItem('email', `${window.UserData.email}`);
-        }
-        if ('cpf' in window.UserData) {
-            window.localStorage.setItem('cpf', `${window.UserData.cpf}`);
-        }
+        console.log(window.UserData);
+        window.localStorage.setItem('UserData', JSON.stringify(window.UserData));
     }
 }
 const form = document.querySelector('#form');
