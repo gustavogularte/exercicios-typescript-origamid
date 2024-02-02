@@ -163,8 +163,24 @@ function mostrarCursos2(data) {
     if (Array.isArray(data)) {
         data.forEach((item) => {
             if (isCurso(item)) {
-                console.log(item.horas);
+                //console.log(item.horas);
             }
         });
     }
 }
+function handleKeyup({ target }) {
+    if (target instanceof HTMLInputElement) {
+        window.UserData = { ...window.UserData, [target.id]: target.value };
+        if ('nome' in window.UserData) {
+            window.localStorage.setItem('nome', `${window.UserData.nome}`);
+        }
+        if ('email' in window.UserData) {
+            window.localStorage.setItem('email', `${window.UserData.email}`);
+        }
+        if ('cpf' in window.UserData) {
+            window.localStorage.setItem('cpf', `${window.UserData.cpf}`);
+        }
+    }
+}
+const form = document.querySelector('#form');
+form?.addEventListener('keyup', handleKeyup);
