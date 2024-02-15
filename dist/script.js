@@ -1,26 +1,7 @@
 "use strict";
-//Conserte a função com TypeScript
-// function normalizarTexto(texto) {
-//   return texto.trims().toLowercase();
-// }
 function normalizarTexto(texto) {
     return texto.trim().toLowerCase();
 }
-//Conserte as funções com TypeScript
-// const input = document.querySelector('input');
-// const total = localStorage.getItem('total');
-// input.value = total;
-// calcularGanho(input.value);
-// function calcularGanho(value) {
-//   const p = document.querySelector('p');
-//   p.innerText = `ganho total: ${value + 100 - value * 0.2}`;
-// }
-// function totalMudou() {
-//   const value = Number(input.value);
-//   localStorage.setItem('total', value);
-//   calcularGanho(value);
-// }
-// input.addEventListener('keyup', totalMudou);
 const input = document.querySelector('input');
 const total = localStorage.getItem('total');
 if (input && total) {
@@ -41,11 +22,6 @@ function totalMudou() {
     }
 }
 input?.addEventListener('keyup', totalMudou);
-// 1 - Crie uma função chamada toNumber
-// 2 - A função pode receber number | string
-// 3 - Se a função receber um número, retorne um número
-// 4 - Se a função receber uma string, retorne um número
-// 5 - Se ela receber algo diferente, retorne um erro. (throw "value deve ser um número ou uma string")
 function toNumber(value) {
     if (typeof value === 'number') {
         return value;
@@ -64,9 +40,6 @@ async function fetchProduct() {
 }
 fetchProduct();
 function showProduct(data) {
-    //console.log(data.nome);
-    // console.log(data.preco);
-    // console.log(data.empresaFabricante.pais);
 }
 async function fetchCursos() {
     const response = await fetch('https://api.origamid.dev/json/cursos.json');
@@ -77,20 +50,12 @@ fetchCursos();
 function mostrarCursos(cursos) {
     cursos.forEach((curso) => {
         const color = curso.nivel === 'iniciante' ? 'blue' : 'red';
-        //   document.body.innerHTML += `
-        //    <h1 style="color: ${color};">${curso.nome}</h1>
-        // `;
     });
 }
-//1 - Selecione o link utilizando o método getElementById.
-//2 - Substitua o href do link (HTMLAnchorElement) de http:// para https://.
 const link = document.getElementById('origamid');
 if (link instanceof HTMLAnchorElement) {
     link.href = link.href.replace('http://', 'https://');
 }
-// 1 - Selecione os elementos com a classe link.
-// 2 - Crie uma função que deve ser executada para cada elemento.
-// 3 - Modificar através da função o estilo da color e border.
 const links = document.querySelectorAll('.link');
 links.forEach((link) => {
     if (link instanceof HTMLElement) {
@@ -101,15 +66,6 @@ function mudarLink(element) {
     element.style.color = 'red';
     element.style.border = '2px solid red';
 }
-// Estado dos elementos
-// menu inativo:
-// class="" em nav
-// aria-expanded="false" em button
-// aria-label="Abrir Menu" em button
-// menu ativo:
-// class="active" em nav
-// aria-expanded="true" em button
-// aria-label="Fechar Menu" em button
 const button = document.getElementById('btn-mobile');
 function toggleMenu(e) {
     const nav = document.querySelector('#nav');
@@ -136,11 +92,6 @@ function arredondarCima(valor) {
         return `${Math.ceil(+valor)}`;
     }
 }
-// 1 - Faça um fetch da API: https://api.origamid.dev/json/cursos.json
-// 2 - Defina a interface da API
-// 3 - Crie um Type Guard, que garanta que a API possui nome, horas e tags
-// 4 - Use Type Guards para garantir a Type Safety do código
-// 5 - Preencha os dados da API na tela.
 async function fetchCursos2() {
     const response = await fetch('https://api.origamid.dev/json/cursos.json');
     const json = await response.json();
@@ -163,7 +114,6 @@ function mostrarCursos2(data) {
     if (Array.isArray(data)) {
         data.forEach((item) => {
             if (isCurso(item)) {
-                //console.log(item.horas);
             }
         });
     }
@@ -212,9 +162,6 @@ function handleKeyup({ target }) {
 }
 const form = document.querySelector('#form');
 form?.addEventListener('keyup', handleKeyup);
-// 1 - Faça um fetch das vendas: https://api.origamid.dev/json/vendas.json
-// 2 - Defina o tipo/interface de cada venda (tuple)
-// 3 - Some o total das vendas e mostre na tela
 async function fetchVendas() {
     const response = await fetch('https://api.origamid.dev/json/vendas.json');
     const json = await response.json();
@@ -223,7 +170,7 @@ async function fetchVendas() {
 fetchVendas();
 function totalVendas(vendas) {
     vendas.reduce((total, venda) => {
-        //console.log(total + venda[1]);
         return total + venda[1];
     }, 0);
 }
+//# sourceMappingURL=script.js.map
